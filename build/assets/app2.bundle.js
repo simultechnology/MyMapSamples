@@ -46,18 +46,36 @@
 
 	'use strict';
 
-	var cats = __webpack_require__(1);
+	var cats = __webpack_require__(3);
 	console.log(cats);
-	console.log('cats');
 
 /***/ },
-/* 1 */
+/* 1 */,
+/* 2 */,
+/* 3 */
 /***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 
-	var cats = ['dave', 'henry', 'martha'];
-	module.exports = cats;
+	// 最小経度・緯度、最大経度・緯度
+	var MY_BOUNDS = [424800000, 84000000, 561600000, 84000000, 561600000, 165600000, 424800000, 165600000];
+
+	var polyCoords = [];
+
+	var bounds = MY_BOUNDS.map(convertMillisecondToDegree);
+
+	for (var i = 0; i < bounds.length; i += 2) {
+	  //polyCoords.push(ol.proj.transform([bounds[i], bounds[i + 1]], 'EPSG:4326', 'EPSG:3857'));
+	  polyCoords.push([bounds[i], bounds[i + 1]]);
+	}
+
+	function convertMillisecondToDegree(val) {
+	  return val / (60 * 60 * 1000.0);
+	}
+
+	module.exports = {
+	  polyCoords: polyCoords
+	};
 
 /***/ }
 /******/ ]);
