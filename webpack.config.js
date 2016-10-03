@@ -2,7 +2,8 @@ var path = require('path');
 module.exports = {
   entry: {
     app1: './src/app1.js',
-    app2: './src/app2.js'
+    app2: './src/app2.js',
+    app3: './src/app3.js'
   },
   output: {
     path: path.resolve(__dirname, 'build/assets/'),
